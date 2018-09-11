@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/local_balance"
+        android:icon="@drawable/ic_format_list_bulleted_black_32dp"
+        android:title="当前手机号余额查询"/>
+
+    <item
+        android:id="@+id/history_check"
+        android:icon="@drawable/ic_format_list_bulleted_black_32dp"
+        android:title="充值历史记录"/>
+
+    <item
+        android:id="@+id/refuel_bundle"
+        android:icon="@drawable/ic_format_list_bulleted_black_32dp"
+        android:title="批量充值"/>
+
+    <item
+        android:id="@+id/exchange_update"
+        android:icon="@drawable/ic_format_list_bulleted_black_32dp"
+        android:title="汇率刷新"/>
+
+    <item
+        android:id="@+id/user_logup"
+        android:icon="@drawable/ic_format_list_bulleted_black_32dp"
+        android:title="用户注册"/>
+
+    <item
+        android:id="@+id/user_login"
+        android:icon="@drawable/ic_format_list_bulleted_black_32dp"
+        android:title="用户登录"/>
+
+    <item
+        android:id="@+id/user_logout"
+        android:icon="@drawable/ic_format_list_bulleted_black_32dp"
+        android:title="注销当前用户"/>
+
+    <item
+        android:id="@+id/select_from_list"
+        android:icon="@drawable/ic_format_list_bulleted_black_32dp"
+        android:title="从通讯录批量选择"/>
+
+    <item
+        android:id="@+id/default_deposit_edit"
+        android:icon="@drawable/ic_format_list_bulleted_black_32dp"
+        android:title="缺省充值金额编辑"/>
+
+    <item
+        android:id="@+id/default_flow_edit"
+        android:icon="@drawable/ic_format_list_bulleted_black_32dp"
+        android:title="缺省购买流量编辑"/>
+
+    <item
+        android:id="@+id/giveup"
+        android:icon="@drawable/ic_format_list_bulleted_black_32dp"
+        android:title="放弃当前操作"/>
+
+    <item
+        android:id="@+id/recharge_all"
+        android:icon="@drawable/ic_format_list_bulleted_black_32dp"
+        android:title="全部充值"/>
+</menu>
