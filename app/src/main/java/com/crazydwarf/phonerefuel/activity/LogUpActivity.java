@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.crazydwarf.phonerefuel.R;
@@ -27,9 +28,19 @@ public class LogUpActivity extends AppCompatActivity
         toolBar.setBackIconClickListener(new SimpleToolBar.BackIconClickListener() {
             @Override
             public void OnClick() {
-                finish();
                 Intent intent = new Intent(LogUpActivity.this,MainActivity.class);
                 startActivity(intent);
+                finish();
+            }
+        });
+
+        Button bnLogup = findViewById(R.id.bn_logup);
+        bnLogup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LogUpActivity.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

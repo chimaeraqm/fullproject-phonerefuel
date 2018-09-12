@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.crazydwarf.phonerefuel.view.SimpleToolBar
+        android:id="@+id/toolbar_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:appIcon="@drawable/app_icon_tmp"
+        app:appIconShow="true"
+        app:appIconSize="40dp"
+        app:backIcon="@drawable/ic_chevron_left_black_32dp"
+        app:backIconSize="32dp"
+        app:menuIconShow="false"
+        app:title="充值历史查询"
+        app:titleColor="@color/colorBlack"
+        app:titleSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_postcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="+01"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/im_flag"
+        app:layout_constraintStart_toEndOf="@+id/im_flag"
+        app:layout_constraintTop_toTopOf="@+id/im_flag" />
+
+    <EditText
+        android:id="@+id/et_phonenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ems="7"
+        android:hint="123 4567"
+        android:inputType="phone"
+        android:textColor="@color/colorBlack"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_postcode"
+        app:layout_constraintStart_toEndOf="@+id/tv_postcode"
+        app:layout_constraintTop_toTopOf="@+id/tv_postcode" />
+
+    <ImageView
+        android:id="@+id/im_flag"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/cb_input_number"
+        app:layout_constraintTop_toBottomOf="@+id/cb_input_number"
+        app:srcCompat="@drawable/im_flag_us" />
+
+    <CheckBox
+        android:id="@+id/cb_input_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="输入其他手机号？"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_top" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="充值记录"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/im_flag"
+        app:layout_constraintTop_toBottomOf="@+id/et_phonenumber" />
+
+
+</android.support.constraint.ConstraintLayout>

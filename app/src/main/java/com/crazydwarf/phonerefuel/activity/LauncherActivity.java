@@ -20,10 +20,10 @@ public class LauncherActivity extends AppCompatActivity
         tv_GetIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
                 Intent intent = new Intent(LauncherActivity.this,MainActivity.class);
+                intent.putExtra("LOGIN",false);
                 startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                finish();
             }
         });
 
@@ -32,10 +32,10 @@ public class LauncherActivity extends AppCompatActivity
         im_GetIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
                 Intent intent = new Intent(LauncherActivity.this,MainActivity.class);
+                intent.putExtra("LOGIN",false);
                 startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                finish();
             }
         });
     }

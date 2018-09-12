@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.crazydwarf.phonerefuel.view.SimpleToolBar
+        android:id="@+id/toolbar_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title = "批量充值"
+        app:titleSize = "20sp"
+        app:titleColor = "@color/colorBlack"
+        app:appIcon = "@drawable/app_icon_tmp"
+        app:appIconShow = "true"
+        app:appIconSize = "40dp"
+        app:backIcon = "@drawable/ic_chevron_left_black_32dp"
+        app:backIconSize = "32dp"
+        app:menuIcon = "@drawable/ic_format_list_bulleted_black_32dp"
+        app:mentIconSize = "32dp"
+        />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="充值信息"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_top" />
+
+</android.support.constraint.ConstraintLayout>

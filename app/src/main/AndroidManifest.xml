@@ -38,6 +38,18 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity android:name=".activity.BalanceCheckActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".activity.BundleRefuelActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".activity.RefuelHistory"
+            android:screenOrientation="portrait">
+        </activity>
+
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"

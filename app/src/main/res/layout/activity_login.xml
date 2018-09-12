@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:appIcon="@drawable/app_icon_tmp"
-        app:appIconShow="true"
+        app:appIconShow="false"
         app:appIconSize="40dp"
         app:backIcon="@drawable/ic_chevron_left_black_32dp"
         app:backIconSize="32dp"
@@ -26,15 +26,13 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="用户名"
         android:textColor="@color/colorBlack"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/bn_login"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_top" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <EditText
         android:id="@+id/et_username"
@@ -91,5 +89,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_top"
         app:layout_constraintVertical_bias="0.7" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_top"
+        app:srcCompat="@drawable/app_icon_tmp" />
 
 </android.support.constraint.ConstraintLayout>
