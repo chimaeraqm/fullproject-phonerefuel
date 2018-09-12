@@ -41,6 +41,7 @@ public class SimpleToolBar extends Toolbar
     private BackIconClickListener backIconClickListener;
 
     private Drawable mMenuIcon;
+    private boolean mMenuIconShow;
     private int mMenuIconSize;
     private MenuIconClickListener menuIconClickListener;
 
@@ -71,6 +72,7 @@ public class SimpleToolBar extends Toolbar
         mBackIconSize = typedArray.getDimensionPixelSize(R.styleable.SimpleToolBar_backIconSize,20);
 
         mMenuIcon = typedArray.getDrawable(R.styleable.SimpleToolBar_menuIcon);
+        mMenuIconShow = typedArray.getBoolean(R.styleable.SimpleToolBar_menuIconShow,true);
         mMenuIconSize = typedArray.getDimensionPixelSize(R.styleable.SimpleToolBar_mentIconSize,20);
 
         mBackgroundBlur = typedArray.getBoolean(R.styleable.SimpleToolBar_backgroundBlur,false);
@@ -90,6 +92,7 @@ public class SimpleToolBar extends Toolbar
         mImageView_AppIcon = findViewById(R.id.im_icon);
         if(mAppIconShow)
         {
+            mImageView_AppIcon.setVisibility(VISIBLE);
             mImageView_AppIcon.setBackground(mAppIcon);
             ViewGroup.LayoutParams layoutParams = mImageView_AppIcon.getLayoutParams();
             layoutParams.height = mAppIconSize;
@@ -101,6 +104,10 @@ public class SimpleToolBar extends Toolbar
                     appIconClickListener.OnClick();
                 }
             });
+        }
+        else
+        {
+            mImageView_AppIcon.setVisibility(INVISIBLE);
         }
 
         mImageView_BackIcon = findViewById(R.id.im_back);
@@ -117,17 +124,25 @@ public class SimpleToolBar extends Toolbar
         });
 
         mImageView_MenuIcon = findViewById(R.id.im_menu);
-        mImageView_MenuIcon.setBackground(mMenuIcon);
-        ViewGroup.LayoutParams menuicon_layoutParams = mImageView_MenuIcon.getLayoutParams();
-        menuicon_layoutParams.height = mMenuIconSize;
-        menuicon_layoutParams.width = mMenuIconSize;
-        mImageView_MenuIcon.setLayoutParams(menuicon_layoutParams);
-        mImageView_MenuIcon.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                menuIconClickListener.OnClick(view);
-            }
-        });
+        if(mMenuIconShow)
+        {
+            mImageView_MenuIcon.setVisibility(VISIBLE);
+            mImageView_MenuIcon.setBackground(mMenuIcon);
+            ViewGroup.LayoutParams menuicon_layoutParams = mImageView_MenuIcon.getLayoutParams();
+            menuicon_layoutParams.height = mMenuIconSize;
+            menuicon_layoutParams.width = mMenuIconSize;
+            mImageView_MenuIcon.setLayoutParams(menuicon_layoutParams);
+            mImageView_MenuIcon.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    menuIconClickListener.OnClick(view);
+                }
+            });
+        }
+        else
+        {
+            mImageView_MenuIcon.setVisibility(INVISIBLE);
+        }
     }
 
     public void setmTextView_Title(TextView mTextView_Title) {

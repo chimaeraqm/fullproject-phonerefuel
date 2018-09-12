@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -37,13 +38,14 @@ public class SimpleBottomSheetDialog extends BottomSheetDialog
     private void init() {
         contentView = View.inflate(getContext(), R.layout.dialog_bottomsheet, null);
         setContentView(contentView);
+        ((View)contentView.getParent()).setBackgroundColor(ContextCompat.getColor(mContext,R.color.colorTrans));
         mPanelItems = findViewById(R.id.panelItems);
         setCancelable(true);
         setCanceledOnTouchOutside(true);
     }
 
     public void addItems(List<DialogListItem> items) {
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         RecyclerView.LayoutManager manager;
         adapter = new DialogAdapter(mContext,items);
         manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

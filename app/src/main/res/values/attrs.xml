@@ -13,6 +13,7 @@
         <attr name="backIconSize" format="dimension"/>
 
         <attr name="menuIcon" format="reference"/>
+        <attr name="menuIconShow" format="boolean"/>
         <attr name="mentIconSize" format="dimension"/>
 
         <attr name="backgroundBlur" format="boolean"/>

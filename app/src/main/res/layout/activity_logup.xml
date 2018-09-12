@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.crazydwarf.phonerefuel.view.SimpleToolBar
+        android:id="@+id/toolbar_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title = "用户注册"
+        app:titleSize = "20sp"
+        app:titleColor = "@color/colorBlack"
+        app:appIcon = "@drawable/app_icon_tmp"
+        app:appIconShow = "true"
+        app:appIconSize = "40dp"
+        app:backIcon = "@drawable/ic_chevron_left_black_32dp"
+        app:backIconSize = "32dp"
+        app:menuIconShow = "false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="用户名"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_top" />
+
+    <EditText
+        android:id="@+id/et_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="12"
+        android:hint="输入用户名"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorBlack"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="用户名长度不超过12个字符\n可由0-9的数字或者a-z的字母组成，字母不区分大小写"
+        app:layout_constraintStart_toStartOf="@+id/et_username"
+        app:layout_constraintTop_toBottomOf="@+id/et_username" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="绑定手机号"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/et_phonenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="输入手机号"
+        android:inputType="phone"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/im_flag"
+        app:layout_constraintStart_toEndOf="@+id/tv_postcode"
+        app:layout_constraintTop_toTopOf="@+id/im_flag" />
+
+    <CheckBox
+        android:id="@+id/cb_localphone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="本机？"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/im_flag"
+        app:layout_constraintTop_toBottomOf="@+id/et_phonenumber" />
+
+    <ImageView
+        android:id="@+id/im_flag"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:srcCompat="@drawable/im_flag_us" />
+
+    <TextView
+        android:id="@+id/tv_postcode"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_marginStart="8dp"
+        android:text="+01"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/im_flag"
+        app:layout_constraintStart_toEndOf="@+id/im_flag"
+        app:layout_constraintTop_toTopOf="@+id/im_flag" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="密码"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/cb_localphone"
+        app:layout_constraintTop_toBottomOf="@+id/cb_localphone" />
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="8"
+        android:hint="输入密码"
+        android:inputType="textPassword"
+        android:textColor="@color/colorBlack"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="@+id/et_phonenumber"
+        app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="密码长度不超过8个字符\n可由0-9的数字或者a-z的字母组成，字母不区分大小写"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="密码输入确认"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <EditText
+        android:id="@+id/et_password2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:hint="再次输入密码"
+        android:inputType="textPassword"
+        android:textColor="@color/colorBlack"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/textView12"
+        app:layout_constraintStart_toStartOf="@+id/et_password"
+        app:layout_constraintTop_toTopOf="@+id/textView12" />
+
+    <Button
+        android:id="@+id/bn_logup"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/shape_button1"
+        android:text="注册"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+</android.support.constraint.ConstraintLayout>

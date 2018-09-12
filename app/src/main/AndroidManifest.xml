@@ -30,6 +30,14 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity android:name=".activity.LogUpActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
