@@ -25,6 +25,7 @@ public class BalanceCheckActivity extends AppCompatActivity
                 intent.putExtra("LOGIN",true);
                 startActivity(intent);
                 finish();
+                double test = 0.;
             }
         });
     }
