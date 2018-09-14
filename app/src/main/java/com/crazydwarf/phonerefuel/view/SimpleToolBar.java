@@ -2,7 +2,13 @@ package com.crazydwarf.phonerefuel.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
@@ -48,6 +54,10 @@ public class SimpleToolBar extends Toolbar
     private boolean mBackgroundBlur;
     private float mBackgroundBlurRatio;
 
+    private Paint mAppIconbgPaint = new Paint();
+    private Paint mMenuIconbgPaint = new Paint();
+    private Paint mBackIconbgPaint = new Paint();
+
     public SimpleToolBar(Context context) {
         this(context,null);
     }
@@ -58,6 +68,7 @@ public class SimpleToolBar extends Toolbar
 
     public SimpleToolBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        setWillNotDraw(false);
         this.mContext = context;
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SimpleToolBar);
         mTitle = typedArray.getString(R.styleable.SimpleToolBar_title);
@@ -77,8 +88,9 @@ public class SimpleToolBar extends Toolbar
 
         mBackgroundBlur = typedArray.getBoolean(R.styleable.SimpleToolBar_backgroundBlur,false);
         mBackgroundBlurRatio = typedArray.getFloat(R.styleable.SimpleToolBar_backgroundBlurRatio,0f);
-        initView();
         typedArray.recycle();
+        initView();
+        paintSetup();
     }
 
     private void initView()
@@ -143,6 +155,53 @@ public class SimpleToolBar extends Toolbar
         {
             mImageView_MenuIcon.setVisibility(INVISIBLE);
         }
+    }
+
+    private void paintSetup()
+    {
+        mAppIconbgPaint.setAntiAlias(true);
+        mAppIconbgPaint.setStyle(Paint.Style.FILL);
+        mAppIconbgPaint.setAntiAlias(true);
+        mAppIconbgPaint.setColor(Color.BLUE);
+
+        mMenuIconbgPaint.setAntiAlias(true);
+        mMenuIconbgPaint.setStyle(Paint.Style.FILL);
+        mMenuIconbgPaint.setAntiAlias(true);
+        mMenuIconbgPaint.setColor(Color.WHITE);
+
+        mBackIconbgPaint.setAntiAlias(true);
+        mBackIconbgPaint.setStyle(Paint.Style.FILL);
+        mBackIconbgPaint.setAntiAlias(true);
+        mBackIconbgPaint.setColor(Color.WHITE);
+
+        invalidate();
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        float appIconHeight = mImageView_AppIcon.getHeight();
+        float appIconWidth = mImageView_AppIcon.getWidth();
+        RectF appIconRect = new RectF();
+        appIconRect = calculateAppIconBounds();
+        float appIconRadius = Math.max(appIconHeight/2.0f,appIconWidth/2.0f);
+        canvas.drawCircle(appIconRect.centerX(), appIconRect.centerY(), appIconRadius, mAppIconbgPaint);
+        //super.dispatchDraw(canvas);
+    }
+
+    private RectF calculateAppIconBounds() {
+        int availableWidth  = mImageView_AppIcon.getWidth() - mImageView_AppIcon.getPaddingLeft() - mImageView_AppIcon.getPaddingRight();
+        int availableHeight = mImageView_AppIcon.getHeight() - mImageView_AppIcon.getPaddingTop() - mImageView_AppIcon.getPaddingBottom();
+        int sideLength = Math.min(availableWidth, availableHeight);
+
+        float left = mImageView_AppIcon.getPaddingLeft() + (availableWidth - sideLength) / 2f;
+        float top = mImageView_AppIcon.getPaddingTop() + (availableHeight - sideLength) / 2f;
+
+        return new RectF(left, top, left + sideLength, top + sideLength);
     }
 
     public void setmTextView_Title(TextView mTextView_Title) {

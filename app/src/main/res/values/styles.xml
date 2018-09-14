@@ -6,13 +6,18 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:fitsSystemWindows">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/colorTrans</item>
+
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+
         <item name="android:popupMenuStyle">@style/popmenuStyle</item>
         <item name="android:dropDownListViewStyle">@style/popmenuDivier</item>
         <item name="android:textAppearanceSmallPopupMenu">@style/popmeuText</item>
         <item name="android:textAppearanceLargePopupMenu">@style/popmeuText</item>
+
         <item name="android:windowAnimationStyle">@style/ActivityAnimStyle</item>
     </style>
 

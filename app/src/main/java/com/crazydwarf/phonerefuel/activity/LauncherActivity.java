@@ -21,6 +21,7 @@ public class LauncherActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LauncherActivity.this,MainActivity.class);
+//                Intent intent = new Intent(LauncherActivity.this,RecycleviewTestActivity.class);
                 intent.putExtra("LOGIN",false);
                 startActivity(intent);
                 finish();
@@ -33,6 +34,7 @@ public class LauncherActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LauncherActivity.this,MainActivity.class);
+//                Intent intent = new Intent(LauncherActivity.this,RecycleviewTestActivity.class);
                 intent.putExtra("LOGIN",false);
                 startActivity(intent);
                 finish();
