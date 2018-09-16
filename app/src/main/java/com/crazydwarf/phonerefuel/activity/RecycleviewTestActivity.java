@@ -1,16 +1,18 @@
 package com.crazydwarf.phonerefuel.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.crazydwarf.phonerefuel.R;
+import com.crazydwarf.phonerefuel.view.BezierCurveView;
 import com.crazydwarf.phonerefuel.view.CommonAdapter;
+import com.crazydwarf.phonerefuel.view.MiniDrawable;
 
 public class RecycleviewTestActivity extends AppCompatActivity
 {
@@ -19,7 +21,8 @@ public class RecycleviewTestActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_recycleview_test);
-        RecyclerView mRecyclerview = findViewById(R.id.recycleview);
+
+        RecyclerView mRecyclerview = findViewById(R.id.recycleview_test);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerview.setLayoutManager(mLayoutManager);
         mRecyclerview.setHasFixedSize(true);
@@ -30,8 +33,7 @@ public class RecycleviewTestActivity extends AppCompatActivity
                 R.drawable.ic_chevron_left_black_32dp,
                 R.drawable.ic_chevron_left_black_32dp};
         CommonAdapter commonAdapter = new CommonAdapter(newTitles,ids);
-        RecyclerView recyclerView = findViewById(R.id.recycleview);
-        recyclerView.setAdapter(commonAdapter);
+        mRecyclerview.setAdapter(commonAdapter);
 
         commonAdapter.setOnCommonRVItemClickListener(new CommonAdapter.OnCommonRVItemClickListener() {
             @Override
@@ -45,5 +47,6 @@ public class RecycleviewTestActivity extends AppCompatActivity
             }
         });
 
+        BezierCurveView im_drawable = findViewById(R.id.im_drawable_view);
     }
 }

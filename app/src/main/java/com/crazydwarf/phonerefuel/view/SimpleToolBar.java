@@ -184,13 +184,13 @@ public class SimpleToolBar extends Toolbar
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        float appIconHeight = mImageView_AppIcon.getHeight();
-        float appIconWidth = mImageView_AppIcon.getWidth();
-        RectF appIconRect = new RectF();
-        appIconRect = calculateAppIconBounds();
-        float appIconRadius = Math.max(appIconHeight/2.0f,appIconWidth/2.0f);
-        canvas.drawCircle(appIconRect.centerX(), appIconRect.centerY(), appIconRadius, mAppIconbgPaint);
-        //super.dispatchDraw(canvas);
+//        float appIconHeight = mImageView_AppIcon.getHeight();
+//        float appIconWidth = mImageView_AppIcon.getWidth();
+//        RectF appIconRect = new RectF();
+//        appIconRect = calculateAppIconBounds();
+//        float appIconRadius = Math.max(appIconHeight/2.0f,appIconWidth/2.0f);
+//        canvas.drawCircle(appIconRect.centerX(), appIconRect.centerY(), appIconRadius, mAppIconbgPaint);
+        super.dispatchDraw(canvas);
     }
 
     private RectF calculateAppIconBounds() {
