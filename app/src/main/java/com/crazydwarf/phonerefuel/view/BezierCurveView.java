@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -16,6 +17,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
+import com.crazydwarf.phonerefuel.R;
 import com.crazydwarf.phonerefuel.UserUtil;
 
 import java.util.ArrayList;
@@ -66,27 +68,32 @@ public class BezierCurveView extends View
 
     private Path mControlPath;
     private Path mBezierPath;
+    private Path mAdsLinePath;
 
-    public BezierCurveView(Context context) {
+    public BezierCurveView(Context context, int level) {
         super(context);
-        this.mContext = context;
+        this.level = level;
         initView();
     }
 
-    public BezierCurveView(Context context, @Nullable AttributeSet attrs) {
+    public BezierCurveView(Context context, @Nullable AttributeSet attrs, int level) {
         super(context, attrs);
-        this.mContext = context;
+        this.level = level;
         initView();
     }
 
-    public BezierCurveView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public BezierCurveView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int level) {
         super(context, attrs, defStyleAttr);
-        this.mContext = context;
+        this.level = level;
         initView();
     }
 
-    void initView()
+    public void initView()
     {
+        if(level < 2)
+            return;
+        int[] colorList = {Color.BLUE,Color.GREEN,Color.GRAY};
+
         mControlLinePaint = new Paint();
         mControlLinePaint.setColor(Color.GRAY);
         mControlLinePaint.setStrokeWidth(8);
@@ -121,18 +128,23 @@ public class BezierCurveView extends View
         mTextPaint.setStrokeWidth(textStrokeWidth);
         mTextPaint.setStyle(Paint.Style.FILL);
 
-        Paint adsLinePaint1 = new Paint();
+        for(int i = 0;i<=level;i++)
+        {
+            mPoints.add(new PointF(0,0));
+        }
+
         for(int i=0;i<level-1;i++)
         {
-            adsLinePaint1.setColor(Color.BLUE);
+            Paint adsLinePaint1 = new Paint();
+            adsLinePaint1.setColor(colorList[i]);
             adsLinePaint1.setStrokeWidth(8);
             adsLinePaint1.setStyle(Paint.Style.STROKE);
             adsLinePaint1.setAntiAlias(true);
             adsLinePaint1.setStrokeCap(Paint.Cap.ROUND);
             adsLinePaints.add(adsLinePaint1);
-            Paint adsPointPaint1 = new Paint();
 
-            adsPointPaint1.setColor(Color.BLUE);
+            Paint adsPointPaint1 = new Paint();
+            adsPointPaint1.setColor(colorList[i]);
             adsPointPaint1.setStrokeWidth(10);
             adsPointPaint1.setStyle(Paint.Style.FILL);
             adsPointPaint1.setAntiAlias(true);
@@ -141,50 +153,18 @@ public class BezierCurveView extends View
 
         mControlPath = new Path();
         mBezierPath = new Path();
+        mAdsLinePath = new Path();
 
-        mPoints.add(new PointF(0,0));
-        mPoints.add(new PointF(0,0));
-        mPoints.add(new PointF(0,0));
-        mPoints.add(new PointF(0,0));
 
         constValue = null;
-        if(mPoints.size() == 3)
+        if(level == 2)
         {
             constValue = new int[]{1,2,1};
         }
-        else if(mPoints.size() == 4)
+        else if(level == 3)
         {
             constValue = new int[]{1,3,3,1};
         }
-        //将绘制过程细分为100，绘制时间5s;
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
-        valueAnimator.setDuration(10 * 1000);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                t = (float) (animation.getAnimatedValue());
-                float finalX = 0;
-                float finalY = 0;
-                //level 临时计算bezier曲线的阶数
-                level = mPoints.size()-1;
-                for(int i=0;i<mPoints.size();i++)
-                {
-                    PointF pointi = mPoints.get(i);
-                    float pointix = pointi.x;
-                    float pointiy = pointi.y;
-                    int param = constValue[i];
-                    double x = param * pointix * Math.pow(1-t,level-i) * Math.pow(t,i);
-                    double y = param * pointiy * Math.pow(1-t,level-i) * Math.pow(t,i);
-                    finalX += x;
-                    finalY += y;
-                }
-                PointF nextPoint = new PointF(finalX,finalY);
-                drawPoints.add(nextPoint);
-                invalidate();
-            }
-        });
-        valueAnimator.start();
     }
 
     @Override
@@ -203,32 +183,49 @@ public class BezierCurveView extends View
         mControlPath.reset();
         PointF pointHead = mPoints.get(0);
         mControlPath.moveTo(pointHead.x,pointHead.y);
-        for(int i=1;i<mPoints.size();i++)
+        List<PointF> adsPoints = new ArrayList<PointF>();
+        for(int i=0;i<mPoints.size();i++)
         {
             PointF pointi = mPoints.get(i);
             mControlPath.lineTo(pointi.x,pointi.y);
+            adsPoints.add(pointi);
         }
         canvas.drawPath(mControlPath,mControlLinePaint);
 
         //adsLinePaints绘制辅助线，adsPointPaints绘制辅助线端点
-//        for(int i=0;i<level;i++)
-//        {
-//
-//        }
-//        List<PointF> adsPoints = new ArrayList<PointF>();
-//        Paint adsPointPaint1 = adsPointPaints.get(0);
-//        for(int i=1;i<mPoints.size();i++)
-//        {
-//            PointF point0 = mPoints.get(i-1);
-//            PointF pointi = mPoints.get(i);
-//            PointF process = new PointF();
-//            process.x = (1 - t) * point0.x + t * pointi.x;
-//            process.y = (1 - t) * point0.y + t * pointi.y;
-//            adsPoints.add(process);
-//            canvas.drawPoint(process.x,process.y,adsPointPaint1);
-//        }
-//        Paint adsLinePaint1 = adsLinePaints.get(0);
-//        canvas.drawLine(adsPoints.get(0).x,adsPoints.get(0).y,adsPoints.get(1).x,adsPoints.get(1).y,adsLinePaint1);
+        List<PointF> backupAdsPoints = new ArrayList<PointF>();
+        for(int i=0;i<level-1;i++)
+        {
+            Paint adsPointPaint1 = adsPointPaints.get(i);
+            Paint adsLinePaint1 = adsLinePaints.get(i);
+            mAdsLinePath.reset();
+            for(int m=1;m < adsPoints.size();m++)
+            {
+                PointF point0 = adsPoints.get(m-1);
+                PointF pointi = adsPoints.get(m);
+                PointF process = new PointF();
+                process.x = (1 - t) * point0.x + t * pointi.x;
+                process.y = (1 - t) * point0.y + t * pointi.y;
+                backupAdsPoints.add(process);
+                if(m == 1)
+                {
+                    mAdsLinePath.moveTo(process.x,process.y);
+                }
+                else
+                {
+                    mAdsLinePath.lineTo(process.x,process.y);
+                }
+                canvas.drawPoint(process.x,process.y,adsPointPaint1);
+            }
+            canvas.drawPath(mAdsLinePath,adsLinePaint1);
+            adsPoints.clear();
+            for(int m=0;m<backupAdsPoints.size();m++)
+            {
+                adsPoints.add(backupAdsPoints.get(m));
+            }
+            backupAdsPoints.clear();
+        }
+
 
         //mBezierPaint沿mBezierPath绘制bezier曲线,mBezierPointPaint绘制bezier曲线尾点
         mBezierPath.reset();
@@ -273,7 +270,16 @@ public class BezierCurveView extends View
         float centerX = w/2;
         float centerY = h/2;
         //初始化各点位置
-        if(mPoints.size() == 4)
+        if(level == 2)
+        {
+            mPoints.get(0).x = centerX-500;
+            mPoints.get(0).y = centerY;
+            mPoints.get(1).x = centerX;
+            mPoints.get(1).y = centerY-500;
+            mPoints.get(2).x = centerX+500;
+            mPoints.get(2).y = centerY;
+        }
+        else if(level == 3)
         {
             mPoints.get(0).x = centerX-500;
             mPoints.get(0).y = centerY;
@@ -283,12 +289,38 @@ public class BezierCurveView extends View
             mPoints.get(2).y = centerY-500;
             mPoints.get(3).x = centerX+500;
             mPoints.get(3).y = centerY;
-            drawPoints.clear();
-            drawPoints.add(mPoints.get(0));
         }
+        drawPoints.clear();
+        drawPoints.add(mPoints.get(0));
     }
 
     public void setLevel(int level) {
         this.level = level;
+        invalidate();
+    }
+
+    public float getT() {
+        return t;
+    }
+
+    public void setT(float t) {
+        this.t = t;
+    }
+
+    public int[] getConstValue() {
+        return constValue;
+    }
+
+    public List<PointF> getmPoints() {
+        return mPoints;
+    }
+
+    public List<PointF> getDrawPoints() {
+        return drawPoints;
+    }
+
+    public void setDrawPoints(List<PointF> drawPoints) {
+        this.drawPoints = drawPoints;
+        invalidate();
     }
 }
